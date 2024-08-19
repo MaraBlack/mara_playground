@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { GridItemComponent } from './components/grid-item/grid-item.component';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { GridItemComponent } from './components/shared/grid-item/grid-item.component';
 import { GridItem } from './models/grid-item.interface';
+import { Tags } from './models/tags.model';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,8 @@ import { GridItem } from './models/grid-item.interface';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'expenses-control-angular';
+export class AppComponent implements OnInit {
+  title = 'mara-playground';
 
   gridData: GridItem[] = [
     {
@@ -27,9 +28,11 @@ export class AppComponent {
           id: '1-1',
           size: 'col-6',
           content: {
-            title: 'test project 1-1',
+            navPath: '/crud-with-nestjs',
+            title: 'CRUD with Nest and Firebase',
             description:
-              ' CREATE src/app/components/grid-item/grid-item.component.html (25 bytes) CREATE src/app/components/grid-item/grid-item.component.spec.ts 634 bytes',
+              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+              tags: [Tags.NESTJS, Tags.ANGULAR, Tags.PRIME_FLEX]
           },
         },
         {
@@ -38,7 +41,7 @@ export class AppComponent {
           content: {
             title: 'test project 1-2',
             description:
-              ' CREATE src/app/components/grid-item/grid-item.component.html (25 bytes) CREATE src/app/components/grid-item/grid-item.component.spec.ts 634 bytes',
+              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
           },
         },
         {
@@ -47,7 +50,7 @@ export class AppComponent {
           content: {
             title: 'test project 1-3',
             description:
-              ' CREATE src/app/components/grid-item/grid-item.component.html (25 bytes) CREATE src/app/components/grid-item/grid-item.component.spec.ts 634 bytes',
+              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
           },
         },
       ],
@@ -58,8 +61,21 @@ export class AppComponent {
       content: {
         title: 'test project 2',
         description:
-          ' CREATE src/app/components/grid-item/grid-item.component.html (25 bytes) CREATE src/app/components/grid-item/grid-item.component.spec.ts 634 bytes',
+          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
       },
     },
   ];
+
+  isRouted = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.isRouted = event.urlAfterRedirects !== '/'; // Adjust the condition based on your needs
+      }
+    });
+  }
+
 }

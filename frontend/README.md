@@ -1,4 +1,4 @@
-# ExpensesControlAngular
+# playground-mara
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
 
@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Publish
 
-Run `firebase deploy` command and access it [mara-playground.web.app](https://mara-playground.web.app/) 
+Run `firebase deploy` command and access it: [mara-playground.web.app](https://mara-playground.web.app/) 
 
 ## Running unit tests
 
