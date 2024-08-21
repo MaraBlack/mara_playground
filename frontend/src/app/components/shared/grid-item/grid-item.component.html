@@ -1,15 +1,21 @@
 <div
-  class="item-container w-full h-20rem shadow-1 mx-2 hover:surface-hover border-round fadein animation-duration-1000"
+  class="item-container flex flex-column w-18rem xl:w-18rem md:w-full sm:w-full shadow-1 p-2 m-4 hover:surface-hover border-round fadein animation-duration-1000"
   (click)="navigateTo(item)"
 >
-  <div class="text-3xl text-color-secondary p-4">{{ item.content.title }}</div>
-  <div class="text-xl text-color-secondary p-4">
+  <div
+    class="text-3xl xl:text-3xl lg:text-2xl md:text-xl sm:text-lg m-4 text-color"
+  >
+    {{ item.content.title }}
+  </div>
+  <div
+    class="text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-lg m-4 text-color-secondary"
+  >
     {{ item.content.description }}
   </div>
-  <div class="flex">
+  <div class="flex flex-wrap m-4">
     <div
       *ngFor="let tag of item.content.tags"
-      class="text-sm mx-4 my-2 text-500 border-1 border-transparent border-round-2xl"
+      class="text-base xl:text-xl lg:text-xl md:text-lg sm:text-base m-1 text-500 border-1 border-transparent border-round-2xl"
     >
       <div>{{ tag }}</div>
     </div>

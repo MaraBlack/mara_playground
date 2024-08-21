@@ -2,6 +2,7 @@ import { Route, Routes } from '@angular/router';
 
 // lazy-load standalone component
 export const APP_ROUTES_LAZY: Route[] = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     loadComponent: () =>

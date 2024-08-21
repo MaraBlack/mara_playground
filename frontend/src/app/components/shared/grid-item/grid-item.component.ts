@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { GridItem } from '../../../models/grid-item.interface';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
 
 @Component({
   selector: 'app-grid-item',
@@ -17,7 +22,7 @@ export class GridItemComponent {
 
   navigateTo(item: GridItem | undefined): void {
     if (item) {
-      const path = item.content.navPath;
+      const path = item.content.navPath || 'not-found';
 
       if (path) {
         const url = this.router.serializeUrl(this.router.createUrlTree([path]));
