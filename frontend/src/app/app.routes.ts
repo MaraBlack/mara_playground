@@ -1,25 +1,12 @@
 import { Route, Routes } from '@angular/router';
+import { AppComponent } from '../app/app.component';
+import { CrudWithNestjsComponent } from '../app/components/projects/crud-with-nestjs/crud-with-nestjs.component';
+import { PageNotFoundComponent } from '../app/components/shared/page-not-found/page-not-found.component';
 
 // lazy-load standalone component
-export const APP_ROUTES_LAZY: Route[] = [
+export const APP_ROUTES: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home',
-    loadComponent: () =>
-      import('../app/app.component').then((m) => m.AppComponent),
-  },
-  {
-    path: 'crud-with-nestjs',
-    loadComponent: () =>
-      import(
-        '../app/components/projects/crud-with-nestjs/crud-with-nestjs.component'
-      ).then((m) => m.CrudWithNestjsComponent),
-  },
-  {
-    path: '**',
-    loadComponent: () =>
-      import(
-        '../app/components/shared/page-not-found/page-not-found.component'
-      ).then((m) => m.PageNotFoundComponent),
-  },
+  { path: 'home', component: AppComponent },
+  { path: 'crud-with-nestjs', component: CrudWithNestjsComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];

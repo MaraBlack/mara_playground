@@ -1,8 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { APP_ROUTES_LAZY } from './app.routes';
+import { APP_ROUTES } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(APP_ROUTES_LAZY)]
+  providers: [provideRouter(APP_ROUTES)]
 };

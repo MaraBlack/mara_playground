@@ -5,11 +5,12 @@ import { GridItemComponent } from './components/shared/grid-item/grid-item.compo
 import { GridItem } from './models/grid-item.interface';
 import { Tags } from './models/tags.model';
 import { projectsPlayground } from './data/projects-playground';
+import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, GridItemComponent],
+  imports: [CommonModule, RouterOutlet, GridItemComponent, PageNotFoundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
