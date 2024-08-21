@@ -3,14 +3,25 @@ import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { GridItemComponent } from './components/shared/grid-item/grid-item.component';
 import { GridItem } from './models/grid-item.interface';
-import { Tags } from './models/tags.model';
 import { projectsPlayground } from './data/projects-playground';
-import { PageNotFoundComponent } from './components/shared/page-not-found/page-not-found.component';
+
+import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { ApiService } from './components/projects/crud-with-nestjs/shared/http/api.service';
+import { DataService } from './components/projects/crud-with-nestjs/shared/services/data.service';
+import { ENV_APP_CONFIG, ENV_CONFIG_TOKEN } from './common/http-config/env-config';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, GridItemComponent, PageNotFoundComponent],
+  imports: [CommonModule, HttpClientModule, RouterOutlet , GridItemComponent],
+  providers: [
+    ApiService,
+    DataService,
+    {
+      provide: ENV_CONFIG_TOKEN,
+      useValue: ENV_APP_CONFIG,
+    },
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
