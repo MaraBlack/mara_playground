@@ -1,0 +1,66 @@
+/* CSS styles for the grid and animation */
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: inherit;
+}
+
+#container {
+  position: relative; /* Set container to be the reference for absolute positioning */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 2px; /* Space between grid cells */
+  position: relative; /* Ensure grid is positioned relative for child elements */
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #f3f1f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative; /* Position cells relative to grid */
+}
+
+.moving-cube-blue,
+.moving-cube-orange,
+.moving-cube-red {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute; /* Absolute positioning for animation */
+  transition: transform 0.5s ease-in-out; /* Smooth transition */
+  z-index: 2; /* Ensure cube is above the grid */
+}
+
+.moving-cube-blue {
+  background-color: #3498db;
+}
+
+.moving-cube-orange {
+  background-color: orange;
+}
+
+.moving-cube-red {
+  background-color: #ff4a2e;
+}
+
+#text-below-grid {
+  padding: 12% 0; /* Space between the grid and the text */
+  font-size: 18px;
+  font-weight: bold;
+  color: inherit;
+}

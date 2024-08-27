@@ -1,6 +1,5 @@
-export abstract class AppError {
-  constructor(error?: any, resourceName?: string) {}
-
-  description!: string;
-  errorNumber!: number;
+export class AppError {
+  constructor(public error: any, public resourceName?: string) {}
+  public description: string = '';
+  public errorNumber: number = 0;
 }

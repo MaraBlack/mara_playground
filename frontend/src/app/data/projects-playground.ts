@@ -17,6 +17,16 @@ export const projectsPlayground: GridItem[] = [
     id: '1-2',
     size: 'col-6',
     content: {
+      navPath: '/small-animations',
+      title: 'Small animations',
+      description: 'A place where I test simple animations ideas',
+      tags: [Tags.CSS, Tags.PRIME_FLEX, Tags.HTML],
+    },
+  },
+  {
+    id: '1-3',
+    size: 'col-6',
+    content: {
       title: 'test project 1-2',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',

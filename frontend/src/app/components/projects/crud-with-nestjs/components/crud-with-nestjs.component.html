@@ -5,6 +5,10 @@
       <ng-container *ngFor="let item of allItems">
         <div class="m-2">{{ item }}</div>
       </ng-container>
+
+      <div *ngIf="get_errorMessage" class="error-message">
+        {{ get_errorMessage }}
+      </div>
     </div>
   </div>
 </div>
