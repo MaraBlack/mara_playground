@@ -1,13 +1,54 @@
-<div>
-  <div class="get-container p-4 bg-green-200 border-round-3xl">
-    <div>GET</div>
-    <div class="flex p-3">
-      <ng-container *ngFor="let item of allItems">
-        <div class="m-2">{{ item }}</div>
-      </ng-container>
+<div class="container justify-content-center align-content-center text-color">
+  <div class="text-4xl  m-2 xl:m-4 lg:m-3 md:m-2 sm:m-2">
+    <div class="flex justify-content-center align-items-baseline text-center">
+      <div class="mr-4">Todo</div>
+      <div class="align-content-center">
+        <i
+          class="pi pi-refresh text-xl m-3 xl:m-4 lg:m-3 md:m-3 sm:m-3"
+          style="font-size: inherit"
+          (click)="onRefreshClick()"
+        ></i>
+      </div>
+    </div>
+    <div class="get-container p-2 xl:p-8 lg:p-6 md:p-4 sm:p-2 border-round-3xl">
+      <div class="p-1 xl:p-4 lg:p-3 md:p-2 sm:p-1">
+        <ng-container *ngFor="let item of allItems" class="flex">
+          <div
+            class="item flex m-2 xl:m-4 lg:m-3 md:m-2 sm:m-1 text-xl xl:text-3xl lg:text-2xl md:text-xl sm:text-xl align-items-center justify-content-between hover:bg-green-100"
+          >
+            <!-- <div class="done">
+              <i
+                class="pi pi-check-square m-3 xl:m-4 lg:m-3 md:m-3 sm:m-3"
+                style="font-size: inherit"
+                (click)="onCheckboxClick(item.id)"
+              ></i>
+            </div> -->
 
-      <div *ngIf="get_errorMessage" class="error-message">
-        {{ get_errorMessage }}
+            <div
+              class="p-3 xl:p-5 lg:p-4 md:p-3 sm:p-3 border-left-3 border-green-700 w-full"
+            >
+              {{ item.name }}
+            </div>
+            <div
+              class="icons flex text-xl mx-1 xl:mx-4 lg:mx-3 md:mx-2 sm:mx-1"
+            >
+              <!-- <i
+                class="pi pi-pencil mx-1 xl:mx-4 lg:mx-3 md:mx-2 sm:mx-1"
+                style="font-size: inherit"
+                (click)="onEditClick(item.id)"
+              ></i> -->
+              <i
+                class="pi pi-times mx-1 xl:mx-4 lg:mx-3 md:mx-2 sm:mx-1"
+                style="font-size: inherit"
+                (click)="onDeleteClick(item.id)"
+              ></i>
+            </div>
+          </div>
+        </ng-container>
+
+        <div *ngIf="get_errorMessage" class="error-message">
+          {{ get_errorMessage }}
+        </div>
       </div>
     </div>
   </div>
