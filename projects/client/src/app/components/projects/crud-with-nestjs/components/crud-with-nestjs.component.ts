@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  importProvidersFrom,
+  OnInit,
+} from '@angular/core';
 import { DataService } from '../shared/services/data.service';
 import { CommonModule } from '@angular/common';
 import { UnknownError } from '../../../../common/http-errors/unknown.error';
@@ -7,12 +12,14 @@ import { UnauthorizedError } from '../../../../common/http-errors/unauthorised.e
 import { NotFoundError } from '../../../../common/http-errors/not-found.error';
 import { InternalServerError } from '../../../../common/http-errors/internal-server.error';
 import { Todo } from '../shared/models/todo.model';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-crud-with-nestjs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxSpinnerModule],
   providers: [DataService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './crud-with-nestjs.component.html',
   styleUrl: './crud-with-nestjs.component.scss',
 })
@@ -21,18 +28,21 @@ export class CrudWithNestjsComponent implements OnInit {
 
   get_errorMessage: string | null = null;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     this.loadItems();
   }
 
   loadItems(): void {
+    this.spinner.show();
     this.dataService.getAllItems().subscribe({
       next: (data) => {
         this.allItems = data;
         this.get_errorMessage = null;
-        console.log('Data:', data);
       },
       error: (error) => {
         if (
@@ -47,6 +57,9 @@ export class CrudWithNestjsComponent implements OnInit {
           this.get_errorMessage =
             'An unexpected error occurred: ' + error.description;
         }
+      },
+      complete: () => {
+        this.spinner.hide();
       },
     });
   }
@@ -68,9 +81,15 @@ export class CrudWithNestjsComponent implements OnInit {
   }
 
   onDeleteClick(id: number) {
+    this.spinner.show();
     console.log(`Item with ID '${id}' has been deleted.`);
-    this.dataService.deleteTodo(id).subscribe(() => {
-      this.loadItems();
+    this.dataService.deleteTodo(id).subscribe({
+      next: () => {
+        this.loadItems();
+      },
+      complete: () => {
+        this.spinner.hide();
+      },
     });
   }
 }

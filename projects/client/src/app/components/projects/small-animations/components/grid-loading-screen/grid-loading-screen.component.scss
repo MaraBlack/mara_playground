@@ -16,15 +16,15 @@
 
 #grid {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(3, 50px);
   gap: 2px; /* Space between grid cells */
   position: relative; /* Ensure grid is positioned relative for child elements */
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   background-color: #f3f1f1;
   border-radius: 50%;
   display: flex;
@@ -38,8 +38,8 @@
 .moving-cube-blue,
 .moving-cube-orange,
 .moving-cube-red {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   position: absolute; /* Absolute positioning for animation */
   transition: transform 0.5s ease-in-out; /* Smooth transition */

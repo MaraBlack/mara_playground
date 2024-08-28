@@ -27,6 +27,7 @@
             "styles": [
               "./node_modules/primeflex/primeflex.css",
               "./node_modules/primeflex/themes/primeone-light.css",
+              "./node_modules/ngx-spinner/animations/ball-8bits.css",
               "src/styles.scss"
             ],
             "scripts": []

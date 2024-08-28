@@ -8,8 +8,8 @@ import { AfterViewInit, Component } from '@angular/core';
   styleUrl: './grid-loading-screen.component.scss',
 })
 export class GridLoadingScreenComponent implements AfterViewInit {
-  private cellSize = 100; // Size of each cell in pixels
-  private gap = 2; // Gap between grid cells in pixels
+  private cellSize = 50; // Size of each cell in pixels
+  private gap = 1; // Gap between grid cells in pixels
 
   private sequenceBlue = [
     { row: 0, col: 0 },
@@ -64,7 +64,7 @@ export class GridLoadingScreenComponent implements AfterViewInit {
     const getPosition = (row: number, col: number) => {
       return {
         top: row * (this.cellSize + this.gap),
-        left: col * (this.cellSize + this.gap) - 100,
+        left: col * (this.cellSize + this.gap) - 50,
       };
     };
 

@@ -1,20 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { GridItemComponent } from './components/shared/grid-item/grid-item.component';
 import { GridItem } from './models/grid-item.interface';
 import { projectsPlayground } from './data/projects-playground';
 
-import { HTTP_INTERCEPTORS, HttpClientModule  } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiService } from './common/http-api/api.service';
 import { DataService } from './components/projects/crud-with-nestjs/shared/services/data.service';
-import { ENV_APP_CONFIG, ENV_CONFIG_TOKEN } from './common/http-config/env-config';
+import {
+  ENV_APP_CONFIG,
+  ENV_CONFIG_TOKEN,
+} from './common/http-config/env-config';
 import { ApiErrorInterceptor } from './common/http-api/api-error-interceptor.service';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterOutlet , GridItemComponent],
+  imports: [
+    CommonModule,
+    NgxSpinnerModule,
+    HttpClientModule,
+    RouterOutlet,
+    GridItemComponent,
+  ],
   providers: [
     ApiService,
     DataService,
