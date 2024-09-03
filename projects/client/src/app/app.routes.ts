@@ -3,6 +3,7 @@ import { AppComponent } from '../app/app.component';
 import { PageNotFoundComponent } from '../app/components/shared/page-not-found/page-not-found.component';
 import { CrudWithNestjsComponent } from './components/projects/crud-with-nestjs/components/crud-with-nestjs.component';
 import { SmallAnimationsComponent } from './components/projects/small-animations/small-animations.component';
+import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
 
 // lazy-load standalone component
 export const APP_ROUTES: Route[] = [
@@ -10,5 +11,6 @@ export const APP_ROUTES: Route[] = [
   { path: 'home', component: AppComponent },
   { path: 'crud-with-nestjs', component: CrudWithNestjsComponent },
   { path: 'small-animations', component: SmallAnimationsComponent },
+  { path: 'dreams-to-paper', component: DreamsToPaperComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

@@ -1,0 +1,13 @@
+<div class="card-container  h-full m-2">
+  <div class="p-1border-round-sm  border-300 border-left-3 text-color-secondary hover:surface-100 py-4">
+    <div class="name text-color ml-4">
+      <div class=" p-1 text-lg">
+        <div class="text-2xl">{{ story.name }}</div>
+      </div>
+    </div>
+    <div class="content ml-4" [innerHTML]="isTruncated ? truncatedContent : sanitizedContent"></div>
+    <div class="ml-4 p-1 cursor-pointer text-primary" (click)="toggleTruncate()">
+      {{ isTruncated ? 'Show More' : 'Show Less' }}
+    </div>
+  </div>
+</div>

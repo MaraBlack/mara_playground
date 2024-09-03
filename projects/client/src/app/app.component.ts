@@ -14,6 +14,9 @@ import {
 } from './common/http-config/env-config';
 import { ApiErrorInterceptor } from './common/http-api/api-error-interceptor.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { GoogleDocService } from './components/projects/dreams-to-paper/shared/service/google-doc.service';
+import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
+import { HtmlSanitizerService } from './components/projects/dreams-to-paper/shared/service/html-sanitizer.service';
 
 @Component({
   selector: 'app-root',
@@ -24,10 +27,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     RouterOutlet,
     GridItemComponent,
+    DreamsToPaperComponent
   ],
   providers: [
     ApiService,
     DataService,
+    GoogleDocService,
+    HtmlSanitizerService,
     {
       provide: ENV_CONFIG_TOKEN,
       useValue: ENV_APP_CONFIG,

@@ -27,6 +27,16 @@ export const projectsPlayground: GridItem[] = [
     id: '1-3',
     size: 'col-6',
     content: {
+      navPath: '/dreams-to-paper',
+      title: 'Dreams to paper',
+      description:
+        'A series of dreams that I had under small stories',
+    },
+  },
+  {
+    id: '1-3',
+    size: 'col-6',
+    content: {
       title: 'test project 1-2',
       description:
         'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',

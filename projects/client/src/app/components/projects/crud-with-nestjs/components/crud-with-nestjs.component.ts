@@ -64,14 +64,6 @@ export class CrudWithNestjsComponent implements OnInit {
     });
   }
 
-  onRefreshClick() {
-    this.dataService.getAllItemsCopy().subscribe({
-      next: (data) => {
-        this.allItems = data;
-      },
-    });
-  }
-
   onCheckboxClick(id: number) {
     console.log(`Item with ID '${id}' has been marked as done.`);
   }

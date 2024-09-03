@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="justify-content-center align-content-center text-center text-6xl text-600 m-12">
+    Dreams to Paper
+  </div>
+  <div *ngIf="dreams && dreams.length > 0" class="flex flex-wrap">
+    <div *ngFor="let item of dreams; let i=index" >
+      <app-story-card [story]="item"></app-story-card>
+    </div>
+  </div>
+</div>
