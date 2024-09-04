@@ -57,6 +57,7 @@ export class CrudWithNestjsComponent implements OnInit {
           this.get_errorMessage =
             'An unexpected error occurred: ' + error.description;
         }
+        this.spinner.hide();
       },
       complete: () => {
         this.spinner.hide();
@@ -76,10 +77,8 @@ export class CrudWithNestjsComponent implements OnInit {
     this.spinner.show();
     console.log(`Item with ID '${id}' has been deleted.`);
     this.dataService.deleteTodo(id).subscribe({
-      next: () => {
-        this.loadItems();
-      },
       complete: () => {
+        this.loadItems();
         this.spinner.hide();
       },
     });

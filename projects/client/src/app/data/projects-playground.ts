@@ -30,7 +30,8 @@ export const projectsPlayground: GridItem[] = [
       navPath: '/dreams-to-paper',
       title: 'Dreams to paper',
       description:
-        'A series of dreams that I had under small stories',
+        'A project in which a document from google docs is retrieved as html and parsed to be displayed in cards',
+        tags: [Tags.NESTJS, Tags.ANGULAR, Tags.PRIME_FLEX],
     },
   },
   {

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { HtmlSanitizerService } from '../../service/html-sanitizer.service';
 
 @Component({
   selector: 'app-story-card',

@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { GridItemComponent } from './components/shared/grid-item/grid-item.component';
@@ -16,7 +16,6 @@ import { ApiErrorInterceptor } from './common/http-api/api-error-interceptor.ser
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { GoogleDocService } from './components/projects/dreams-to-paper/shared/service/google-doc.service';
 import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
-import { HtmlSanitizerService } from './components/projects/dreams-to-paper/shared/service/html-sanitizer.service';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +32,7 @@ import { HtmlSanitizerService } from './components/projects/dreams-to-paper/shar
     ApiService,
     DataService,
     GoogleDocService,
-    HtmlSanitizerService,
+    
     {
       provide: ENV_CONFIG_TOKEN,
       useValue: ENV_APP_CONFIG,

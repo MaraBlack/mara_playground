@@ -1,10 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
+import { Dream } from './entities/dream.entity';
 
 @Injectable()
 export class GoogleDocService {
   private readonly docUrl = 'https://docs.google.com/document/d/1JWLqYeCeAFsbuq_uUSwXxLbEMSzgHmjEipbko8bWbjs/pub';
+  
 
   async fetchDocumentContent(): Promise<string> {
     try {
@@ -15,23 +17,17 @@ export class GoogleDocService {
     }
   }
 
-  parseHtml(html: string): { name: string; content: string }[] {
+  parseHtml(html: string): Dream[] {
     const $ = cheerio.load(html);
-
-    // Find the <div> with class "doc-content"
     const contentDiv = $('.doc-content');
 
     if (contentDiv.length === 0) {
-      return []; // Return an empty array if the <div> is not found
+      return []; 
     }
-
-    // Get the HTML content within the <div>
     const divHtml = contentDiv.html();
-
-    // Load the <div> content into cheerio for further processing
     const $divContent = cheerio.load(divHtml);
 
-    const stories: { name: string; content: string }[] = [];
+    const stories: Dream[] = [];
     let currentStoryName: string | null = null;
     let currentContent: string = '';
     let processingStory: boolean = false;
@@ -45,25 +41,21 @@ export class GoogleDocService {
         const start = $(element).attr('start');
         if (start) {
           if (processingStory) {
-            // Push the previous story into the array
             stories.push({
               name: currentStoryName || 'Untitled',
               content: currentContent.trim()
             });
           }
 
-          // Start processing a new story
           currentStoryName = $(element).find('li').first().text().trim();
           currentContent = '';
           processingStory = true;
         }
       } else if (tagName === 'p' && processingStory) {
-        // Gather content from <p> tags if a story is being processed
         currentContent += $(element) + ' ';
       }
     });
 
-    // Push the last story if any
     if (processingStory) {
       stories.push({
         name: currentStoryName || 'Untitled',
@@ -74,7 +66,7 @@ export class GoogleDocService {
     return stories;
   }
 
-  async getStories(): Promise<{ name: string; content: string }[]> {
+  async getStories(): Promise<Dream[]> {
     const html = await this.fetchDocumentContent();
     return this.parseHtml(html);
   }

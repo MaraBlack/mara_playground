@@ -1,9 +1,8 @@
-<div class="container">
-  <div class="justify-content-center align-content-center text-center text-6xl text-600 m-12">
-    Dreams to Paper
-  </div>
-  <div *ngIf="dreams && dreams.length > 0" class="flex flex-wrap">
-    <div *ngFor="let item of dreams; let i=index" >
+<div class="container justify-content-center align-content-center text-center">
+  <div class="text-6xl text-600 m-12">Dreams to Paper</div>
+  <div *ngIf="error" class="text-2xl p-4">{{ error }}</div>
+  <div *ngIf="!error">
+    <div *ngFor="let item of dreams; let i = index">
       <app-story-card [story]="item"></app-story-card>
     </div>
   </div>

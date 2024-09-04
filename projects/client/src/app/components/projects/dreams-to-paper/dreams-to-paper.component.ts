@@ -11,24 +11,19 @@ import { StoryCardComponent } from './shared/components/story-card/story-card.co
   styleUrls: ['./dreams-to-paper.component.scss']
 })
 export class DreamsToPaperComponent implements OnInit {
-  dreams: { name: string, content: string }[] = []; // Ensure it's an array
+  dreams: { name: string, content: string }[] = [];
+  error: string | null = null;
 
   constructor(private googleDocService: GoogleDocService) { }
 
   ngOnInit(): void {
-    this.googleDocService.getDocContent().subscribe(response => {
-      try {
-        // Parse the JSON string if it's not already an object
-        const data = typeof response === 'string' ? JSON.parse(response) : response;
-        console.log('Parsed data:', data);
-
-        if (Array.isArray(data)) {
-          this.dreams = data;
-        } else {
-          console.error('Expected an array but got:', data);
-        }
-      } catch (error) {
-        console.error('Error parsing response:', error);
+    this.googleDocService.getDocContent().subscribe({
+      next: data => {
+        this.dreams = data;
+      },
+      error: err => {
+        console.error('Error in DreamsToPaperComponent:', err);
+        this.error = 'Failed to load data. Please try again later.';
       }
     });
   }
