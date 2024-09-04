@@ -5,7 +5,8 @@ import { Dream } from './entities/dream.entity';
 
 @Injectable()
 export class GoogleDocService {
-  private readonly docUrl = 'https://docs.google.com/document/d/1JWLqYeCeAFsbuq_uUSwXxLbEMSzgHmjEipbko8bWbjs/pub';
+  private readonly docKey = '1JWLqYeCeAFsbuq_uUSwXxLbEMSzgHmjEipbko8bWbjs';
+  private readonly docUrl = `https://docs.google.com/document/d/${this.docKey}/pub`;
   
 
   async fetchDocumentContent(): Promise<string> {
