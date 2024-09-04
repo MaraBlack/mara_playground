@@ -1,6 +1,6 @@
-<div class="container justify-content-center align-content-center text-center">
-  <div class="text-6xl text-600 m-12">Dreams to Paper</div>
-  <div *ngIf="error" class="text-2xl p-4">{{ error }}</div>
+<div class="container ">
+  <div class="text-6xl text-600 m-12 justify-content-center align-content-center text-center">Dreams to Paper</div>
+  <div *ngIf="error" class="text-2xl p-4 justify-content-center align-content-center text-center">{{ error }}</div>
   <div *ngIf="!error">
     <div *ngFor="let item of dreams; let i = index">
       <app-story-card [story]="item"></app-story-card>

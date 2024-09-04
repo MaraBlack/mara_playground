@@ -17,13 +17,22 @@ export class DreamsToPaperComponent implements OnInit {
   constructor(private googleDocService: GoogleDocService) { }
 
   ngOnInit(): void {
-    this.googleDocService.getDocContent().subscribe({
-      next: data => {
-        this.dreams = data;
-      },
-      error: err => {
-        console.error('Error in DreamsToPaperComponent:', err);
-        this.error = 'Failed to load data. Please try again later.';
+    this.googleDocService.getDocContent().subscribe(response => {
+
+
+      try {
+        // Parse the JSON string if it's not already an object
+        const data = typeof response === 'string' ? JSON.parse(response) : response;
+        console.log('Parsed data:', data);
+
+        if (Array.isArray(data)) {
+          this.dreams = data;
+        } else {
+          console.error('Expected an array but got:', data);
+        }
+      } catch (error) {
+        this.error = 'Error parsing response';
+        console.error('Error parsing response:', error);
       }
     });
   }
