@@ -31,16 +31,19 @@ export const projectsPlayground: GridItem[] = [
       title: 'Dreams to paper',
       description:
         'A project in which a document from google docs is retrieved as html and parsed to be displayed in cards',
-        tags: [Tags.NESTJS, Tags.ANGULAR, Tags.PRIME_FLEX],
+      tags: [Tags.NESTJS, Tags.ANGULAR, Tags.PRIME_FLEX],
     },
   },
   {
     id: '1-3',
     size: 'col-6',
     content: {
-      title: 'test project 1-2',
+      navPath: 'https://marablack.github.io/mara/',
+      isNavPathExternal: true,
+      title: 'Metropolis',
       description:
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+        'A project to learn a bit of threeJS, representig a concept of an interactive cv',
+        tags: [Tags.THREE_JS, Tags.ANGULAR],
     },
   },
 ];

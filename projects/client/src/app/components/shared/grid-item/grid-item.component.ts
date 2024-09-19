@@ -22,13 +22,19 @@ export class GridItemComponent {
 
   navigateTo(item: GridItem | undefined): void {
     if (item) {
-      const path = item.content.navPath || 'not-found';
-
-      if (path) {
-        const url = this.router.serializeUrl(this.router.createUrlTree([path]));
-        window.open(url, '_blank');
+      if (item.content.isNavPathExternal) {
+        window.open(item.content.navPath, '_blank');
       } else {
-        console.error('Navigation path is not provided.');
+        const path = item.content.navPath || 'not-found';
+
+        if (path) {
+          const url = this.router.serializeUrl(
+            this.router.createUrlTree([path])
+          );
+          window.open(url, '_blank');
+        } else {
+          console.error('Navigation path is not provided.');
+        }
       }
     }
   }

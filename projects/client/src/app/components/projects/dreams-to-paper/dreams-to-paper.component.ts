@@ -42,7 +42,7 @@ export class DreamsToPaperComponent implements OnInit {
       },
       error: (error) => {
         this.spinner.hide();
-        this.error = "Sorry, we couldn't not get the data";
+        this.error = "Sorry, we could not get the data!";
       },
     });
   }

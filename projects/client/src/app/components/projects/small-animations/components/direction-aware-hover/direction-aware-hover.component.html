@@ -1,0 +1,16 @@
+<div class="container">
+  <ul>
+    <li
+      *ngFor="let item of items"
+      [style.width.px]="item.size"
+      [style.height.px]="item.size"
+      [style.perspective]="item.size * 2 + 'px'"
+      [ngStyle]="{'background-color': item.color}"
+    >
+      <div class="info" [ngStyle]="{'background-color': item.hoverColor}">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
