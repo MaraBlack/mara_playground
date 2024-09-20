@@ -38,15 +38,6 @@ export class TodoController {
     }
   }
 
-  @Get('all-items-copy')
-  getAllCopy(): Todo[] {
-    try {
-      return this.todoService.getAllCopy();
-    } catch (error) {
-      throw new NotFoundException('Resource not found');
-    }
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.todoService.findOne(+id);
@@ -59,9 +50,7 @@ export class TodoController {
 
   @Delete('delete')
   remove(@Query('id') id: string) {
-    // Check if id is numeric
     const isNumeric = !isNaN(parseInt(id)) && !isNaN(+id);
-    console.log('isNumeric:', isNumeric);
 
     if (!isNumeric) {
       throw new HttpException(
@@ -71,13 +60,9 @@ export class TodoController {
     }
 
     try {
-      // Convert to number
       const numericId = Number(id);
-
-      // Call the service to remove the todo item
       return this.todoService.remove(numericId);
     } catch (error) {
-      // Handle any errors from the service layer
       throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }

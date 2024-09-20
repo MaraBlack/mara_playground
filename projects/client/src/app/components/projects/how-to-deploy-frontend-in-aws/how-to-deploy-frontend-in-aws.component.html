@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step-by-Step Guide for Deploying a Frontend Project</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex/primeflex.css" />
+    <link rel="stylesheet" href="https://unpkg.com/primeicons/primeicons.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/primeng/resources/themes/nova/theme.css"
+    />
+  </head>
+  <body class="text-color-secondary">
+    <header>
+      <h1>How to Frontend with AWS</h1>
+    </header>
+
+    <section>
+      <ul>
+        <li><a href="#step1">Step 1: Create an S3 Bucket</a></li>
+        <li><a href="#step3">Step 2: Create a CloudFront Distribution</a></li>
+        <li><a href="#step4">Step 3: Configure Route 53</a></li>
+        <li><a href="#step2">Step 4: Set Up SSL Certificate</a></li>
+        <li><a href="#step6">Step 5: Deploy Your Project</a></li>
+        <li><a href="#step7">Step 6: Monitor and Troubleshoot</a></li>
+      </ul>
+    </section>
+
+    <section id="prerequisites">
+      <h2>Prerequisites</h2>
+      <p></p>
+      <h4>Domain Name:</h4>
+      <p class="warning-box">
+        Ensure you have a purchased domain name (e.g
+        <a href="https://www.namecheap.com">Namecheap</a>,
+        <a href="https://www.godaddy.com">GoDaddy</a>,
+        <a href="https://domains.google">Google Domains</a>,
+        <a href="https://rotld.ro">ROTL</a>)
+      </p>
+
+      <h4>Notes:</h4>
+      <p class="warning-box">
+        This tutorial is made on region <strong>eu-north-1</strong> with
+        Certifcation and Route53 on <strong>us-east-1</strong>. Make sure that
+        regions match in all the settings, when I created the s3 bucket the
+        region was already set, could not change it. For me it worked like this
+        but I think it's better to have all of the settings in the same region
+        :(
+      </p>
+    </section>
+
+    <section id="step1">
+      <h2>Step 1: Create an S3 Bucket</h2>
+
+      <p>
+        Go to the S3 console:
+        <a href="https://eu-north-1.console.aws.amazon.com/s3/buckets"
+          >S3 Console</a
+        >
+      </p>
+      <h3>Create Bucket:</h3>
+      <ul>
+        <li>Click on <strong> Create Bucket </strong></li>
+        <li>
+          Name your bucket (e.g.,
+          <span class="code-snippet">your-domain-name</span>, in my case it was
+          <span class="code-snippet">mara-playground.ro</span>, the exact name
+          of the domain I have)
+        </li>
+        <img
+          src="/assets/img/step1_generalConfiguration.png"
+          alt="Creating an S3 Bucket - general configuration"
+        />
+      </ul>
+      <h3>Bucket Settings:</h3>
+      <ul>
+        <li><strong>Object Ownership:</strong> use the recommended one</li>
+        <img
+          src="/assets/img/step1_objectOwnership.png"
+          alt="Creating an S3 Bucket - object ownership"
+        />
+        <li>
+          <strong>Block Public Access:</strong> Disable the option in order to
+          set the visibility to public
+        </li>
+        <img
+          src="/assets/img/step1_publicAccess.png"
+          alt="Creating an S3 Bucket - public access"
+        />
+      </ul>
+      <h3>Permissions:</h3>
+      <p>
+        After bucket creation, set your bucket policy to allow public access to
+        your files. You can use the following JSON template (modify with your
+        bucket name):
+      </p>
+
+      <pre class="text-xl">
+&#123;
+  "Version": "2012-10-17",
+  "Statement": [
+    &#123;
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::your-bucket-name/*"
+    &#125;
+  ]
+&#125;</pre
+      >
+
+      <img
+        src="/assets/img/step1_permissions.png"
+        alt="Creating an S3 Bucket - permissions"
+      />
+    </section>
+
+    <section id="step2">
+      <h2>Step 2: Create a CloudFront Distribution</h2>
+      <p>Creating a CloudFront distribution to serve your S3 bucket content.</p>
+      <h3>Navigating to CloudFront:</h3>
+      <p>
+        Go to the CloudFront console:
+        <a href="https://console.aws.amazon.com/cloudfront/home"
+          >CloudFront Console</a
+        >.
+      </p>
+      <h3>Create Distribution:</h3>
+      <ul>
+        <li>Click on <strong>Create Distribution</strong></li>
+        <li>
+          <strong>Origin Domain Name:</strong> Select your S3 bucket. (it may
+          look like
+          <span class="code-snippet">your-bucket-name.s3.amazonaws.com</span>).
+        </li>
+        <img
+          src="/assets/img/step2_createDistribution_origin.png"
+          alt="Create a CloudFront Distribution - origin"
+        />
+        <li>
+          <strong>Create OAC:</strong> in order to specify origin access control
+        </li>
+        <img
+          src="/assets/img/step2_createDistribution_oac.png"
+          alt="Create a CloudFront Distribution - OAC"
+        />
+        <p>Now it should look like this:</p>
+        <img
+          src="/assets/img/step2_createDistribution_oac_done.png"
+          alt="Create a CloudFront Distribution - OAC done"
+        />
+        <li>
+          <strong>Viewer Protocol Policy:</strong> Set to Redirect HTTP to HTTPS
+          for security.
+        </li>
+        <img
+          src="/assets/img/step2_createDistribution_defaultCache.png"
+          alt="Create a CloudFront Distribution - default cache"
+        />
+        <li>
+          <strong>Web Application Firewall: </strong> Enable security protection
+        </li>
+        <img
+          src="/assets/img/step2_createDistribution_firewall.png"
+          alt="Create a CloudFront Distribution - firewall"
+        />
+        <li>
+          <strong>SSL Certificate:</strong>
+          <span class="text-red-400">
+            This section will be set in the next step
+          </span>
+        </li>
+      </ul>
+      <li>
+        <strong>Custom Error Response:</strong>
+        For error responses, configure the response for 403 errors to redirect
+        to <span class="code-snippet">/index.html</span> with a 200 status code.
+      </li>
+      <img
+        src="/assets/img/step2_createDistribution_customError.png"
+        alt="Create a CloudFront Distribution - Custom error"
+      />
+      <li>
+        <strong>Invalidate CloudFront Cache:</strong>
+        Configure the invalidation to path
+        <span class="code-snippet">/*</span> from the existing distribution
+        under Invalidations tab
+      </li>
+      <img
+        src="/assets/img/step2_createDistribution_createInvalidation.png"
+        alt="Create a CloudFront Distribution - invalidation"
+      />
+    </section>
+
+    <section id="step3">
+      <h2>Step 3: Configure Route 53</h2>
+      <p>Setting up a hosted zone in Route 53 for your domain.</p>
+      <h3>Navigating to Route 53:</h3>
+      <p>
+        Go to the Route 53 console:
+        <a href="https://console.aws.amazon.com/route53/home"
+          >Route 53 Console</a
+        >.
+      </p>
+      <h3>Create Hosted Zone:</h3>
+      <ul>
+        <li>Click on <strong>Create Hosted Zone</strong></li>
+        <li>
+          Enter your domain name and choose <strong>Public Hosted Zone </strong>
+        </li>
+        <img
+          src="/assets/img/step2_createHostedZone.png"
+          alt="Configure Route 53"
+        />
+      </ul>
+      <h3>Record Sets:</h3>
+      <p>
+        Add an <strong>A Record</strong> and an
+        <strong>AAAA Record</strong> pointing to your CloudFront distribution.
+        Use the CloudFront distribution domain name (e.g.,
+        <span class="code-snippet">xxxxx.cloudfront.net</span>) as the alias
+        target.
+      </p>
+      <img
+        src="/assets/img/step3_route53_defineRecord.png"
+        alt="Configure Route 53 - define record"
+      />
+      <p>
+        After everything was set, the records list should look like this
+        (<strong>CNAME</strong> will be set later, don't worry)
+      </p>
+      <img
+        src="/assets/img/step3_route53_allRecords.png"
+        alt="Configure Route 53 - all records"
+      />
+      <h3>Update Domain Registrar (if needed):</h3>
+      <p>
+        If your domain is registered with a different registrar, you may need to
+        update the nameservers to the ones provided by Route 53. This can
+        usually be done in the domain registrar's dashboard.
+      </p>
+      <p>In my case I updated them in ROTL like this:</p>
+      <img
+        src="/assets/img/step3_route53_setRegistrarOnDomainAdminPanel.png"
+        alt="Configure Route 53 - set domain registrar"
+      />
+    </section>
+
+    <section id="step4">
+      <h2>Step 4: Set Up SSL Certificate</h2>
+      <p>Requesting a public SSL certificate for your domain.</p>
+      <h3>Navigating to ACM:</h3>
+      <p>
+        Go to the ACM console:
+        <a
+          href="https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/list"
+          >ACM Console</a
+        >.
+      </p>
+      <h3>Request a Certificate:</h3>
+      <ul>
+        <li>Click on <strong>Request a certificate</strong></li>
+        <li>Choose <strong>Public certificate</strong></li>
+        <li>
+          Enter your domain name (e.g.,
+          <span class="code-snippet">your-domain.com</span>) and any subdomains
+          if necessary.
+        </li>
+        <img
+          src="/assets/img/step4_requestCertificate.png"
+          alt="Set Up SSL Certificate"
+        />
+      </ul>
+      <h3>Validation:</h3>
+      <p>
+        To validate the certificate, open the details of the certificate and
+        scroll to the Domains section. Copy and add the given CNAME record name
+        and value to your DNS provider.
+      </p>
+
+      <li>
+        <strong>Add CNAME Record</strong> in Route 53 by going to
+        <span>
+          <a href="https://console.aws.amazon.com/route53/home"
+            >Route 53 Console</a
+          >
+        </span>
+        -> select your host name -> <strong>Create Record</strong>
+        <ul>
+          For
+          <strong>Record name</strong
+          >, paste the CNAME record name you copied from the certificate details
+          (it usually looks like something like
+          <span class="code-snippet"
+            >_a1b2c3defg56hijklm789nopq.yourdomain.com</span
+          >).
+        </ul>
+        <ul>
+          For
+          <strong>Record type</strong
+          >, choose
+          <span class="code-snippet">CNAME</span>
+        </ul>
+        <ul>
+          For
+          <strong>Value</strong
+          >, paste the corresponding CNAME value you copied.
+        </ul>
+        <img
+          src="/assets/img/step4_requestCertificate_verifyOnRoute53.png"
+          alt="Set Up SSL Certificate - verify with Route53"
+        />
+      </li>
+
+      <p class="warning-box">
+        <strong>Propagation Time:</strong>
+        <span>
+          After adding the CNAME record, it may take some time for changes to
+          propagate across the internet (usually within minutes, but can take up
+          to 48 hours).
+        </span>
+      </p>
+      <p class="warning-box">
+        <strong>Validation:</strong>
+        <span>
+          After adding the CNAME record, go back to the AWS Certificate Manager
+          (ACM) and check the status of the certificate. It should change to
+          “Success” once the validation is successful.
+        </span>
+      </p>
+
+      <li>
+        <strong>After your certificate vas successfuly verified</strong>, edit
+        the distribution and add your certificate:
+        <ul>
+          <p>
+            Go to the CloudFront console:
+            <a href="https://console.aws.amazon.com/cloudfront/home"
+              >CloudFront Console</a
+            >
+            -> open your distribution -> Edit -> add your certificate
+          </p>
+        </ul>
+
+        <img
+          src="/assets/img/step4_requestCertificate_editDistribution.png"
+          alt="Set Up SSL Certificate - edit distribution"
+        />
+      </li>
+    </section>
+
+    <section id="step5">
+      <h2>Step 5: Deploy Your Project</h2>
+      <p>Uploading your frontend files to the S3 bucket.</p>
+      <h3>Upload Files:</h3>
+      <p>
+        Upload your files from <span class="code-snippet">dist</span> folder
+        after you've build your project to your S3 bucket by accesing
+        <span>
+          <a href="https://eu-north-1.console.aws.amazon.com/s3/buckets"
+            >S3 Console</a
+          >
+          -> Upload
+        </span>
+      </p>
+      <img
+        src="/assets/img/step5_uploadInBucket.png"
+        alt="Deploying Your Frontend"
+      />
+      <p class="warning-box">
+        <strong>Index in root - </strong>
+        <span> make sure that index.html is in root folder </span>
+      </p>
+      <h3>Test:</h3>
+      <p>
+        Once everything is set up, access your domain to see if your application
+        loads correctly by accesing
+        <span class="code-snippet"
+          >http://your-domain-name.s3.amazonaws.com/home</span
+        >
+      </p>
+    </section>
+
+    <section id="step6">
+      <h2>Step 6: Monitor and Troubleshoot</h2>
+      <p>Monitoring logs and troubleshooting any issues.</p>
+      <h3>CloudFront Logs:</h3>
+      <p>Enable logging in CloudFront for monitoring requests and responses.</p>
+      <h3>Error Handling:</h3>
+      <p>
+        Check for any issues using the CloudFront console and your S3 bucket
+        settings.
+      </p>
+      <img
+        src="/assets/img/step6_403Error.png"
+        alt="Monitor and Troubleshoot"
+      />
+
+      <li>If you encounter this error make sure to check the following steps:
+        <ol>
+          <strong>Verify S3 Block Public Access Settings</strong>
+          Double-check that the following settings under <strong>Block Public Access</strong>
+          are disabled
+        </ol>
+        <ol>
+          <strong>Check Bucket Policy</strong
+          >: Ensure that your bucket policy allows public read access
+        </ol>
+        <ol>
+          <strong>Check Object Permissions:</strong>
+          Even with the bucket policy allowing access, individual objects can
+          have permissions that override this. Go to your S3 bucket in the AWS
+          Management Console -> Click on the object (e.g., <span class="code-snippet">index.html</span>) -> Check
+          the <strong>Permissions</strong> tab for that object -> Ensure that the object is not
+          explicitly set to deny access.
+        </ol>
+      </li>
+    </section>
+  </body>
+</html>

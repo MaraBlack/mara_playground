@@ -13,14 +13,6 @@ export class TodoService {
     { id: 5, name: 'Do not forget to water the plants' },
   ];
 
-  private copyData: Todo[] = [
-    { id: 1, name: 'Buy shampoo' },
-    { id: 2, name: 'Wash the bike' },
-    { id: 3, name: 'Make an appointment to the doctor' },
-    { id: 4, name: 'Buy new set of spoons' },
-    { id: 5, name: 'Do not forget to water the plants' },
-  ];
-
   // Helper method to find a todo by ID
   private findTodoById(id: number): Todo {
     const todo = this.data.find((item) => item.id === id);
@@ -33,10 +25,6 @@ export class TodoService {
   // Method to get all todos
   getAll(): Todo[] {
     return this.data;
-  }
-
-  getAllCopy(): Todo[] {
-    return this.copyData;
   }
 
   // Method to get a single todo by ID
@@ -66,9 +54,6 @@ export class TodoService {
 
   // Method to delete a todo by ID
   remove(id: number): void {
-    // const todo = this.findTodoById(id);
-    console.log('id', typeof id);
-
     this.data = this.data.filter((item) => item.id !== Number(id));
   }
 }

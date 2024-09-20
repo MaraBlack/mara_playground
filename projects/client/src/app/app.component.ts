@@ -16,6 +16,7 @@ import { ApiErrorInterceptor } from './common/http-api/api-error-interceptor.ser
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { GoogleDocService } from './components/projects/dreams-to-paper/shared/service/google-doc.service';
 import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
+import { HowToDeployFrontendInAwsComponent } from './components/projects/how-to-deploy-frontend-in-aws/how-to-deploy-frontend-in-aws.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dr
     HttpClientModule,
     RouterOutlet,
     GridItemComponent,
-    DreamsToPaperComponent
+    DreamsToPaperComponent,
+    HowToDeployFrontendInAwsComponent
   ],
   providers: [
     ApiService,
