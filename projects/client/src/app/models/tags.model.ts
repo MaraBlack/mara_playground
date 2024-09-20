@@ -6,7 +6,10 @@ export enum Tags {
     IONIC = 'ionic',
     CSS = 'css',
     HTML = 'html',
-    NESTJS = 'nestJS'
+    NESTJS = 'nestJS',
+    S3 = "S3",
+    CLOUDFRONT = 'cloudfront',
+    ROUTE53 = 'route53'
   }
   
   export interface TagFormat {

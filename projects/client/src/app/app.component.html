@@ -1,20 +1,78 @@
-<!-- Conditional Rendering Based on Router State -->
-<ng-container *ngIf="!isRouted">
-  <div
-    class="h-12rem justify-content-center align-content-center text-center text-6xl text-color-secondary"
-  >
-    <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page"
-      >Playground</a
+<div
+  *ngIf="!isRouted"
+  routerLink="/home"
+  routerLinkActive="active"
+  ariaCurrentWhenActive="page"
+  class="h-full"
+>
+  <ng-container>
+    <div
+      class="h-8rem justify-content-center align-content-center text-center text-6xl text-color-secondary"
     >
-  </div>
-  <div class="" style="padding: 4%">
-    <div class="flex flex-wrap justify-content-center align-content-center">
-      <ng-container *ngFor="let item of gridData">
-        <div class="m-2">
-          <app-grid-item [item]="item"></app-grid-item></div
-      ></ng-container>
+      <div>Playground</div>
     </div>
-  </div>
-</ng-container>
+    <div class="" style="padding: 3% auto">
+      <div class="flex flex-wrap justify-content-center align-content-center">
+        <ng-container *ngFor="let item of gridData">
+          <div class="">
+            <app-grid-item [item]="item"></app-grid-item></div
+        ></ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <div class="relative">
+      <div class="left-to-right-clip-path relative surface-100"></div>
+      <div
+        class="text-div justify-content-center align-content-center text-center text-6xl text-color-secondary surface-100 z-1"
+      >
+        How To
+      </div>
+      <div class="surface-100" style="padding: 3% auto">
+        <div
+          class="flex flex-wrap justify-content-center align-content-center pb-6"
+        >
+          <ng-container *ngFor="let item of howToData">
+            <div class="">
+              <app-grid-item
+                [item]="item"
+                cardHoverColor="bg-gray-300"
+              ></app-grid-item></div
+          ></ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <div class="right-to-left-clip-path bg-gray-400"></div>
+    <footer class="footer bg-gray-400 z-1 text-xl text-color">
+      <div class="container">
+        <p>&copy; 2024 by Mara. All rights reserved.</p>
+        <div
+          class="flex flex-wrap text-center justify-content-center align-items-center cursor-pointer text-2xl"
+        >
+          <div class="social-item mr-4">
+            <a href="https://www.instagram.com/mara.black.010/" target="_blank"
+              ><i
+                class="pi pi-instagram mr-2"
+                style="font-size: inherit; color: inherit"
+              ></i
+            ></a>
+          </div>
+          <div class="social-item mr-4">
+            <a href="https://www.linkedin.com/in/mariabolea/" target="_blank"
+              ><i
+                class="pi pi-linkedin mr-2"
+                style="font-size: inherit; color: inherit"
+              ></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </ng-container>
+</div>
 
 <router-outlet></router-outlet>

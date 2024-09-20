@@ -1,5 +1,8 @@
 <div
-  class="item-container flex flex-column w-18rem xl:w-18rem md:w-full sm:w-full shadow-1 p-2 m-4 hover:surface-hover border-round fadein animation-duration-1000"
+  class="item-container flex flex-column w-18rem xl:w-18rem md:w-full sm:w-full p-2 m-4 shadow-1 border-round fadein animation-duration-1000"
+  (mouseenter)="onMouseOver()"
+  (mouseleave)="onMouseLeave()"
+  [ngClass]="[isHovered ? cardHoverColor : cardColor]"
   (click)="navigateTo(item)"
 >
   <div

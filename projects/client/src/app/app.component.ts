@@ -17,6 +17,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { GoogleDocService } from './components/projects/dreams-to-paper/shared/service/google-doc.service';
 import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
 import { HowToDeployFrontendInAwsComponent } from './components/projects/how-to-deploy-frontend-in-aws/how-to-deploy-frontend-in-aws.component';
+import { howTo } from './data/how-to';
 
 @Component({
   selector: 'app-root',
@@ -48,6 +49,8 @@ export class AppComponent implements OnInit {
   title = 'mara-playground';
 
   gridData: GridItem[] = projectsPlayground;
+  howToData: GridItem[] = howTo;
+  
   isRouted = false;
 
   constructor(private router: Router) {}

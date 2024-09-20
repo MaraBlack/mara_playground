@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,19 +10,43 @@
       href="https://unpkg.com/primeng/resources/themes/nova/theme.css"
     />
   </head>
-  <body class="text-color-secondary">
+  <body class="text-color-secondary text-xl bg-white" style="margin: 0 20%">
     <header>
       <h1>How to Frontend with AWS</h1>
     </header>
 
     <section>
       <ul>
-        <li><a href="#step1">Step 1: Create an S3 Bucket</a></li>
-        <li><a href="#step3">Step 2: Create a CloudFront Distribution</a></li>
-        <li><a href="#step4">Step 3: Configure Route 53</a></li>
-        <li><a href="#step2">Step 4: Set Up SSL Certificate</a></li>
-        <li><a href="#step6">Step 5: Deploy Your Project</a></li>
-        <li><a href="#step7">Step 6: Monitor and Troubleshoot</a></li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step1')"
+            >Step 1: Create an S3 Bucket</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step2')"
+            >Step 2: Create a CloudFront Distribution</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step3')"
+            >Step 3: Configure Route 53</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step4')"
+            >Step 4: Set Up SSL Certificate</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step5')"
+            >Step 5: Deploy Your Project</a
+          >
+        </li>
+        <li>
+          <a class="hover:text-900 cursor-pointer" (click)="scrollTo('step6')"
+            >Step 6: Monitor and Troubleshoot</a
+          >
+        </li>
       </ul>
     </section>
 
@@ -33,20 +56,21 @@
       <h4>Domain Name:</h4>
       <p class="warning-box">
         Ensure you have a purchased domain name (e.g
-        <a href="https://www.namecheap.com">Namecheap</a>,
-        <a href="https://www.godaddy.com">GoDaddy</a>,
-        <a href="https://domains.google">Google Domains</a>,
-        <a href="https://rotld.ro">ROTL</a>)
+        <a class="hover:text-900" href="https://www.namecheap.com">Namecheap</a
+        >, <a class="hover:text-900" href="https://www.godaddy.com">GoDaddy</a>,
+        <a class="hover:text-900" href="https://domains.google"
+          >Google Domains</a
+        >, <a class="hover:text-900" href="https://rotld.ro">ROTL</a>)
       </p>
 
       <h4>Notes:</h4>
       <p class="warning-box">
-        This tutorial is made on region <strong>eu-north-1</strong> with
-        Certifcation and Route53 on <strong>us-east-1</strong>. Make sure that
-        regions match in all the settings, when I created the s3 bucket the
-        region was already set, could not change it. For me it worked like this
-        but I think it's better to have all of the settings in the same region
-        :(
+        This tutorial is made with S3 bucket on region
+        <strong>eu-north-1</strong> with Certifcation and Route53 on
+        <strong>us-east-1</strong>. Make sure that regions match in all the
+        settings, when I created the S3 bucket the region was already set, could
+        not change it. For me it worked like this but I think it's better to
+        have all of the settings in the same region :(
       </p>
     </section>
 
@@ -69,7 +93,7 @@
           of the domain I have)
         </li>
         <img
-          src="/assets/img/step1_generalConfiguration.png"
+          [src]="gitHardcodedPathToImg + 'step1_generalConfiguration.png'"
           alt="Creating an S3 Bucket - general configuration"
         />
       </ul>
@@ -77,7 +101,7 @@
       <ul>
         <li><strong>Object Ownership:</strong> use the recommended one</li>
         <img
-          src="/assets/img/step1_objectOwnership.png"
+          [src]="gitHardcodedPathToImg + 'step1_objectOwnership.png'"
           alt="Creating an S3 Bucket - object ownership"
         />
         <li>
@@ -85,7 +109,7 @@
           set the visibility to public
         </li>
         <img
-          src="/assets/img/step1_publicAccess.png"
+          [src]="gitHardcodedPathToImg + 'step1_publicAccess.png'"
           alt="Creating an S3 Bucket - public access"
         />
       </ul>
@@ -112,7 +136,7 @@
       >
 
       <img
-        src="/assets/img/step1_permissions.png"
+        [src]="gitHardcodedPathToImg + 'step1_permissions.png'"
         alt="Creating an S3 Bucket - permissions"
       />
     </section>
@@ -136,19 +160,21 @@
           <span class="code-snippet">your-bucket-name.s3.amazonaws.com</span>).
         </li>
         <img
-          src="/assets/img/step2_createDistribution_origin.png"
+          [src]="gitHardcodedPathToImg + 'step2_createDistribution_origin.png'"
           alt="Create a CloudFront Distribution - origin"
         />
         <li>
           <strong>Create OAC:</strong> in order to specify origin access control
         </li>
         <img
-          src="/assets/img/step2_createDistribution_oac.png"
+          [src]="gitHardcodedPathToImg + 'step2_createDistribution_oac.png'"
           alt="Create a CloudFront Distribution - OAC"
         />
         <p>Now it should look like this:</p>
         <img
-          src="/assets/img/step2_createDistribution_oac_done.png"
+          [src]="
+            gitHardcodedPathToImg + 'step2_createDistribution_oac_done.png'
+          "
           alt="Create a CloudFront Distribution - OAC done"
         />
         <li>
@@ -156,14 +182,18 @@
           for security.
         </li>
         <img
-          src="/assets/img/step2_createDistribution_defaultCache.png"
+          [src]="
+            gitHardcodedPathToImg + 'step2_createDistribution_defaultCache.png'
+          "
           alt="Create a CloudFront Distribution - default cache"
         />
         <li>
           <strong>Web Application Firewall: </strong> Enable security protection
         </li>
         <img
-          src="/assets/img/step2_createDistribution_firewall.png"
+          [src]="
+            gitHardcodedPathToImg + 'step2_createDistribution_firewall.png'
+          "
           alt="Create a CloudFront Distribution - firewall"
         />
         <li>
@@ -179,7 +209,9 @@
         to <span class="code-snippet">/index.html</span> with a 200 status code.
       </li>
       <img
-        src="/assets/img/step2_createDistribution_customError.png"
+        [src]="
+          gitHardcodedPathToImg + 'step2_createDistribution_customError.png'
+        "
         alt="Create a CloudFront Distribution - Custom error"
       />
       <li>
@@ -189,7 +221,10 @@
         under Invalidations tab
       </li>
       <img
-        src="/assets/img/step2_createDistribution_createInvalidation.png"
+        [src]="
+          gitHardcodedPathToImg +
+          'step2_createDistribution_createInvalidation.png'
+        "
         alt="Create a CloudFront Distribution - invalidation"
       />
     </section>
@@ -211,7 +246,7 @@
           Enter your domain name and choose <strong>Public Hosted Zone </strong>
         </li>
         <img
-          src="/assets/img/step2_createHostedZone.png"
+          [src]="gitHardcodedPathToImg + '/step2_createHostedZone.png'"
           alt="Configure Route 53"
         />
       </ul>
@@ -224,7 +259,7 @@
         target.
       </p>
       <img
-        src="/assets/img/step3_route53_defineRecord.png"
+        [src]="gitHardcodedPathToImg + 'step3_route53_defineRecord.png'"
         alt="Configure Route 53 - define record"
       />
       <p>
@@ -232,7 +267,7 @@
         (<strong>CNAME</strong> will be set later, don't worry)
       </p>
       <img
-        src="/assets/img/step3_route53_allRecords.png"
+        [src]="gitHardcodedPathToImg + 'step3_route53_allRecords.png'"
         alt="Configure Route 53 - all records"
       />
       <h3>Update Domain Registrar (if needed):</h3>
@@ -243,7 +278,10 @@
       </p>
       <p>In my case I updated them in ROTL like this:</p>
       <img
-        src="/assets/img/step3_route53_setRegistrarOnDomainAdminPanel.png"
+        [src]="
+          gitHardcodedPathToImg +
+          'step3_route53_setRegistrarOnDomainAdminPanel.png'
+        "
         alt="Configure Route 53 - set domain registrar"
       />
     </section>
@@ -269,7 +307,7 @@
           if necessary.
         </li>
         <img
-          src="/assets/img/step4_requestCertificate.png"
+          [src]="gitHardcodedPathToImg + 'step4_requestCertificate.png'"
           alt="Set Up SSL Certificate"
         />
       </ul>
@@ -309,7 +347,10 @@
           >, paste the corresponding CNAME value you copied.
         </ul>
         <img
-          src="/assets/img/step4_requestCertificate_verifyOnRoute53.png"
+          [src]="
+            gitHardcodedPathToImg +
+            'step4_requestCertificate_verifyOnRoute53.png'
+          "
           alt="Set Up SSL Certificate - verify with Route53"
         />
       </li>
@@ -345,7 +386,10 @@
         </ul>
 
         <img
-          src="/assets/img/step4_requestCertificate_editDistribution.png"
+          [src]="
+            gitHardcodedPathToImg +
+            'step4_requestCertificate_editDistribution.png'
+          "
           alt="Set Up SSL Certificate - edit distribution"
         />
       </li>
@@ -366,7 +410,7 @@
         </span>
       </p>
       <img
-        src="/assets/img/step5_uploadInBucket.png"
+        [src]="gitHardcodedPathToImg + 'step5_uploadInBucket.png'"
         alt="Deploying Your Frontend"
       />
       <p class="warning-box">
@@ -394,14 +438,16 @@
         settings.
       </p>
       <img
-        src="/assets/img/step6_403Error.png"
+        [src]="gitHardcodedPathToImg + 'step6_403Error.png'"
         alt="Monitor and Troubleshoot"
       />
 
-      <li>If you encounter this error make sure to check the following steps:
+      <li>
+        If you encounter this error make sure to check the following steps:
         <ol>
           <strong>Verify S3 Block Public Access Settings</strong>
-          Double-check that the following settings under <strong>Block Public Access</strong>
+          Double-check that the following settings under
+          <strong>Block Public Access</strong>
           are disabled
         </ol>
         <ol>
@@ -412,9 +458,12 @@
           <strong>Check Object Permissions:</strong>
           Even with the bucket policy allowing access, individual objects can
           have permissions that override this. Go to your S3 bucket in the AWS
-          Management Console -> Click on the object (e.g., <span class="code-snippet">index.html</span>) -> Check
-          the <strong>Permissions</strong> tab for that object -> Ensure that the object is not
-          explicitly set to deny access.
+          Management Console -> Click on the object (e.g.,
+          <span class="code-snippet">index.html</span
+          >) -> Check the
+          <strong>Permissions</strong>
+          tab for that object -> Ensure that the object is not explicitly set to
+          deny access.
         </ol>
       </li>
     </section>

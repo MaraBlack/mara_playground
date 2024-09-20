@@ -17,6 +17,10 @@ import {
 })
 export class GridItemComponent {
   @Input() item!: GridItem;
+  @Input() cardColor: string = 'surface-0';
+  @Input() cardHoverColor: string = 'surface-100'
+
+  isHovered!: boolean;
 
   constructor(private router: Router) {}
 
@@ -37,5 +41,15 @@ export class GridItemComponent {
         }
       }
     }
+  }
+
+  onMouseOver() {
+    this.isHovered = true;
+    console.log('in', this.isHovered);
+  }
+  onMouseLeave() {
+    this.isHovered = false;
+    console.log('out', this.isHovered);
+    
   }
 }

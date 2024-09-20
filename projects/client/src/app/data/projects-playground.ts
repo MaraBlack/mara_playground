@@ -45,16 +45,5 @@ export const projectsPlayground: GridItem[] = [
         'A project to learn a bit of threeJS, representig a concept of an interactive cv',
         tags: [Tags.THREE_JS, Tags.ANGULAR],
     },
-  },// 
-  {
-    id: '1-3',
-    size: 'col-6',
-    content: {
-      navPath: '/how-to-deploy-frontend-in-aws',
-      title: 'How to deploy angular project in aws',
-      description:
-        'description',
-        tags: [Tags.ANGULAR],
-    },
   }
 ];
