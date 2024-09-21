@@ -1,36 +1,57 @@
-<div class="text-color-secondary text-xl bg-white tutorial-container">
+<div class="text-color-secondary text-xl bg-white tutorial-container relative">
   <div>
     <div class="text-6xl my-4 p-2 text-center">How to Frontend with AWS</div>
   </div>
 
-  <div class="shadow-1 p-4 m-2 text-3xl text-left">
+  <div
+    class="shadow-1 p-4 m-2 text-xl xl:text-4xl md:text-2xl sm:text-xl text-left bg-white sticky"
+    [ngClass]="{ fixed: isSticky }"
+  >
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step1')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step1' }"
+        (click)="scrollTo('step1')"
         >1 - Create an S3 Bucket</a
       >
     </div>
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step2')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step2' }"
+        (click)="scrollTo('step2')"
         >2 - Create a CloudFront Distribution</a
       >
     </div>
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step3')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step3' }"
+        (click)="scrollTo('step3')"
         >3 - Configure Route 53</a
       >
     </div>
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step4')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step4' }"
+        (click)="scrollTo('step4')"
         >4 - Set Up SSL Certificate</a
       >
     </div>
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step5')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step5' }"
+        (click)="scrollTo('step5')"
         >5 - Deploy Your Project</a
       >
     </div>
     <div>
-      <a class="hover:text-primary cursor-pointer" (click)="scrollTo('step6')"
+      <a
+        class="hover:text-primary cursor-pointer"
+        [ngClass]="{ active: activeId === 'step6' }"
+        (click)="scrollTo('step6')"
         >6 - Monitor and Troubleshoot</a
       >
     </div>

@@ -12,3 +12,17 @@ pre {
   background: #f4fbf8;
 }
 
+.sticky {
+  transition: all 0.3s ease;
+}
+
+.sticky.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.active {
+  color: #4c9691;
+  font-weight: bold;
+}
