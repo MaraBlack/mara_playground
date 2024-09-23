@@ -3,8 +3,9 @@
     <div class="text-6xl my-4 p-2 text-center">How to Frontend with AWS</div>
   </div>
 
+  <!-- MENU -->
   <div
-    class="shadow-1 p-4 m-2 text-xl xl:text-4xl md:text-2xl sm:text-xl text-left bg-white sticky"
+    class="shadow-1 p-4 m-2 text-base xl:text-2xl md:text-xl sm:text-base text-left bg-white sticky"
     [ngClass]="{ fixed: isSticky }"
   >
     <div>
@@ -57,6 +58,7 @@
     </div>
   </div>
 
+  <!-- PREREQUISITES -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="prerequisites">
     <div class="text-4xl text-primary">Prerequisites</div>
     <p class="warning-box">
@@ -78,6 +80,7 @@
     </p>
   </div>
 
+  <!-- STEP 1 - S3 BUCKET -->
   <div class="shadow-1 p-4 m-2 my-4" id="step1">
     <div class="text-4xl text-primary">Step 1: Create an S3 Bucket</div>
 
@@ -149,6 +152,7 @@
     />
   </div>
 
+  <!-- STEP 2 - CLOUDFRONT DISTRIBUTION -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step2">
     <div class="text-3xl text-primary">
       Step 2: Create a CloudFront Distribution
@@ -239,6 +243,7 @@
     />
   </div>
 
+  <!-- STEP 3 - ROUTE 53 -->
   <div class="shadow-1 p-4 m-2 my-4" id="step3">
     <div class="text-4xl text-primary">Step 3: Configure Route 53</div>
     <div class="text-3xl text-color my-4 font-bold">
@@ -306,6 +311,7 @@
     />
   </div>
 
+  <!-- STEP 4 - SSL CERTIFICATE -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step4">
     <div class="text-4xl text-primary">Step 4: Set Up SSL Certificate</div>
     <div class="text-3xl text-color my-4 font-bold">Navigating to ACM:</div>
@@ -329,7 +335,7 @@
         necessary.
       </li>
       <img
-        [src]="gitHardcodedPathToImg + 'step4_requestCertificate.png'"
+        [src]="gitHardcodedPathToImg + 'step3_requestCertificate.png'"
         alt="Set Up SSL Certificate"
       />
     </ul>
@@ -420,6 +426,7 @@
     </li>
   </div>
 
+  <!-- STEP 5 - DEPLOY -->
   <div class="shadow-1 p-4 m-2 my-4" id="step5">
     <div class="text-4xl text-primary">Step 5: Deploy Your Project</div>
     <div class="text-3xl text-color my-4 font-bold">Upload Files:</div>
@@ -453,6 +460,7 @@
     </p>
   </div>
 
+  <!-- STEP 6 - TROUBLESHOOT -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step6">
     <div class="text-4xl text-primary">Step 6: Monitor and Troubleshoot</div>
     <div class="text-3xl text-color my-4 font-bold">CloudFront Logs:</div>
@@ -491,5 +499,17 @@
         deny access.
       </ol>
     </li>
+
+    <p class="warning-box">
+      If you receive <strong>Aceess Denied</strong> you might want to check if your buuild from dist folder is correctly built. 
+      <span>
+        See 
+        <a
+          class="text-primary"
+          href="https://stackoverflow.com/questions/43656895/serving-and-testing-a-bundle-after-ng-build"
+          >Serving and testing a bundle after ng build</a
+        >
+      </span>
+    </p>
   </div>
 </div>
