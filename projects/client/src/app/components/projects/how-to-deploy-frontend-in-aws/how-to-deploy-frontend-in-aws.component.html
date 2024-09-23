@@ -5,55 +5,55 @@
 
   <!-- MENU -->
   <div
-    class="shadow-1 p-4 m-2 text-base xl:text-2xl md:text-xl sm:text-base text-left bg-white sticky"
+    class="shadow-1 flex flex-wrap p-2 m-2 text-base xl:text-2xl md:text-xl sm:text-base text-left bg-white sticky"
     [ngClass]="{ fixed: isSticky }"
   >
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step1' }"
         (click)="scrollTo('step1')"
-        >1 - Create an S3 Bucket</a
+        >1 - S3 Bucket</a
       >
     </div>
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step2' }"
         (click)="scrollTo('step2')"
-        >2 - Create a CloudFront Distribution</a
+        >2 - CloudFront Distribution</a
       >
     </div>
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step3' }"
         (click)="scrollTo('step3')"
-        >3 - Configure Route 53</a
+        >3 - Route 53</a
       >
     </div>
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step4' }"
         (click)="scrollTo('step4')"
-        >4 - Set Up SSL Certificate</a
+        >4 - SSL Certificate</a
       >
     </div>
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step5' }"
         (click)="scrollTo('step5')"
-        >5 - Deploy Your Project</a
+        >5 - Deploy</a
       >
     </div>
-    <div>
+    <div class="m-1 p-2 shadow-1 border-round-md">
       <a
         class="hover:text-primary cursor-pointer"
         [ngClass]="{ active: activeId === 'step6' }"
         (click)="scrollTo('step6')"
-        >6 - Monitor and Troubleshoot</a
+        >6 - Troubleshoot</a
       >
     </div>
   </div>
@@ -82,7 +82,7 @@
 
   <!-- STEP 1 - S3 BUCKET -->
   <div class="shadow-1 p-4 m-2 my-4" id="step1">
-    <div class="text-4xl text-primary">Step 1: Create an S3 Bucket</div>
+    <div class="text-4xl text-primary">1: S3 Bucket</div>
 
     <div class="text-3xl text-color my-4 font-bold">Create Bucket:</div>
     <ul>
@@ -155,7 +155,7 @@
   <!-- STEP 2 - CLOUDFRONT DISTRIBUTION -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step2">
     <div class="text-3xl text-primary">
-      Step 2: Create a CloudFront Distribution
+      2: CloudFront Distribution
     </div>
     <div class="text-3xl text-color my-4 font-bold">
       Navigating to CloudFront:
@@ -245,7 +245,7 @@
 
   <!-- STEP 3 - ROUTE 53 -->
   <div class="shadow-1 p-4 m-2 my-4" id="step3">
-    <div class="text-4xl text-primary">Step 3: Configure Route 53</div>
+    <div class="text-4xl text-primary">3: Route 53</div>
     <div class="text-3xl text-color my-4 font-bold">
       Navigating to Route 53:
     </div>
@@ -313,7 +313,7 @@
 
   <!-- STEP 4 - SSL CERTIFICATE -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step4">
-    <div class="text-4xl text-primary">Step 4: Set Up SSL Certificate</div>
+    <div class="text-4xl text-primary">4: SSL Certificate</div>
     <div class="text-3xl text-color my-4 font-bold">Navigating to ACM:</div>
 
     <div class="text-3xl text-color my-4 font-bold">Request a Certificate:</div>
@@ -428,7 +428,7 @@
 
   <!-- STEP 5 - DEPLOY -->
   <div class="shadow-1 p-4 m-2 my-4" id="step5">
-    <div class="text-4xl text-primary">Step 5: Deploy Your Project</div>
+    <div class="text-4xl text-primary">5: Deploy</div>
     <div class="text-3xl text-color my-4 font-bold">Upload Files:</div>
     <p>
       Upload your files from <span class="code-snippet">dist</span> folder after
@@ -462,7 +462,7 @@
 
   <!-- STEP 6 - TROUBLESHOOT -->
   <div class="shadow-1 p-4 m-2 my-4 surface-50" id="step6">
-    <div class="text-4xl text-primary">Step 6: Monitor and Troubleshoot</div>
+    <div class="text-4xl text-primary">6: Troubleshoot</div>
     <div class="text-3xl text-color my-4 font-bold">CloudFront Logs:</div>
     <p>Enable logging in CloudFront for monitoring requests and responses.</p>
     <div class="text-3xl text-color my-4 font-bold">Error Handling:</div>
