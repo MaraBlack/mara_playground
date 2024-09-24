@@ -1,8 +1,11 @@
+$main-color: red;
+
 .container {
 }
 
 @media all and (min-width: 1820px) {
   .container {
     padding: 4% 16%;
+    color: $main-color;
   }
 }

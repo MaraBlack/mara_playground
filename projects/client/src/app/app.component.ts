@@ -35,7 +35,6 @@ import { howTo } from './data/how-to';
     ApiService,
     DataService,
     GoogleDocService,
-    
     {
       provide: ENV_CONFIG_TOKEN,
       useValue: ENV_APP_CONFIG,
