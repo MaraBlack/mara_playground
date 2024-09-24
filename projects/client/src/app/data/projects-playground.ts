@@ -45,5 +45,17 @@ export const projectsPlayground: GridItem[] = [
         'A project to learn a bit of threeJS, representig a concept of an interactive cv',
         tags: [Tags.THREE_JS, Tags.ANGULAR],
     },
+  },
+  {
+    id: '1-3',
+    size: 'col-6',
+    content: {
+      navPath: '/game-map',
+      isNavPathExternal: true,
+      title: 'Game Map',
+      description:
+        'A project to learn a bit of ngx-graph',
+        tags: [Tags.NGX_GRAPH, Tags.D3, Tags.ANGULAR],
+    },
   }
 ];

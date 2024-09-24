@@ -1,26 +1,82 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import {
+  DagreNodesOnlyLayout,
+  Layout,
+  NgxGraphModule,
+} from '@swimlane/ngx-graph';
+import * as shape from 'd3-shape';
+import { customNodeConfig, links, nodes } from './graph.data';
 
 @Component({
   selector: 'app-game-map',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, NgxGraphModule],
   templateUrl: './game-map.component.html',
-  styleUrl: './game-map.component.scss'
+  styleUrls: ['./game-map.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)',
+  },
 })
-export class GameMapComponent {
+export class GameMapComponent implements OnInit {
+  public curve: any = shape.curveLinear;
+  public layout: Layout = new DagreNodesOnlyLayout();
 
-  nodes = [
-    { id: 'town', label: 'Town', x: 100, y: 100 },
-    { id: 'forest', label: 'Forest', x: 200, y: 200 },
-    { id: 'dungeon', label: 'Dungeon', x: 300, y: 300 },
-    { id: 'castle', label: 'Castle', x: 400, y: 150 }
-  ];
+  public layoutSettings = {
+    orientation: 'TB',
+  };
+  viewSizeCustom = {
+    w: window.innerWidth,
+    h: window.innerHeight,
+  };
 
-  links = [
-    { source: 'town', target: 'forest' },
-    { source: 'town', target: 'castle' },
-    { source: 'forest', target: 'dungeon' },
-    { source: 'castle', target: 'dungeon' }
-  ];
-  
+  nodes = nodes;
+  customNodeConfig = customNodeConfig;
+  links = links;
+  selectedNodes: Set<string> = new Set();
+  selectedLabels: string[] = [];
+
+  ngOnInit(): void {}
+
+  onNodeClick(nodeClicked: any) {
+    const foundIndex = this.nodes.findIndex((x) => x.id == nodeClicked.id);
+    this.nodes[foundIndex].clicked.isActive =
+      !this.nodes[foundIndex].clicked.isActive;
+
+    if (this.selectedNodes.has(nodeClicked.id)) {
+      this.selectedNodes.delete(nodeClicked.id);
+    } else {
+      this.selectedNodes.add(nodeClicked.id);
+    }
+    this.selectedLabels = this.getSelectedNodeLabels();
+
+    this.updateLinkColors();
+    this.links = [...this.links]; // this will break drag&drop :(
+  }
+
+  updateLinkColors() {
+    this.links.forEach((link) => {
+      debugger;
+      link.isSelected =
+        this.selectedNodes.has(link.source) &&
+        this.selectedNodes.has(link.target);
+    });
+  }
+
+  getSelectedNodeLabels(): string[] {
+    const labels: string[] = [];
+    this.selectedNodes.forEach((nodeId) => {
+      const node = this.nodes.find((n) => n.id === nodeId);
+      if (node) {
+        labels.push(node.label);
+      }
+    });
+
+    return labels;
+  }
+
+  onResize(event: any) {
+    this.viewSizeCustom.w = event.target.innerWidth;
+    this.viewSizeCustom.h = event.target.innerHeight;
+  }
 }

@@ -5,6 +5,7 @@ import { CrudWithNestjsComponent } from './components/projects/crud-with-nestjs/
 import { SmallAnimationsComponent } from './components/projects/small-animations/small-animations.component';
 import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
 import { HowToDeployFrontendInAwsComponent } from './components/projects/how-to-deploy-frontend-in-aws/how-to-deploy-frontend-in-aws.component';
+import { GameMapComponent } from './components/projects/game-map/game-map.component';
 
 // lazy-load standalone component 
 export const APP_ROUTES: Route[] = [
@@ -13,6 +14,7 @@ export const APP_ROUTES: Route[] = [
   { path: 'crud-with-nestjs', component: CrudWithNestjsComponent },
   { path: 'small-animations', component: SmallAnimationsComponent },
   { path: 'dreams-to-paper', component: DreamsToPaperComponent },
+  { path: 'game-map', component: GameMapComponent },
   { path: 'how-to-deploy-frontend-in-aws', component: HowToDeployFrontendInAwsComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

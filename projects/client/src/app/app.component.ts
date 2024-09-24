@@ -18,6 +18,8 @@ import { GoogleDocService } from './components/projects/dreams-to-paper/shared/s
 import { DreamsToPaperComponent } from './components/projects/dreams-to-paper/dreams-to-paper.component';
 import { HowToDeployFrontendInAwsComponent } from './components/projects/how-to-deploy-frontend-in-aws/how-to-deploy-frontend-in-aws.component';
 import { howTo } from './data/how-to';
+import { GameMapComponent } from './components/projects/game-map/game-map.component';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,8 @@ import { howTo } from './data/how-to';
     RouterOutlet,
     GridItemComponent,
     DreamsToPaperComponent,
-    HowToDeployFrontendInAwsComponent
+    HowToDeployFrontendInAwsComponent,
+    GameMapComponent
   ],
   providers: [
     ApiService,
