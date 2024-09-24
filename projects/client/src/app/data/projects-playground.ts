@@ -54,7 +54,7 @@ export const projectsPlayground: GridItem[] = [
       isNavPathExternal: true,
       title: 'Game Map',
       description:
-        'A project to learn a bit of ngx-graph',
+        'A small project to learn a bit of ngx-graph',
         tags: [Tags.NGX_GRAPH, Tags.D3, Tags.ANGULAR],
     },
   }

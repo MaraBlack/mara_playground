@@ -1,3 +1,9 @@
+<head>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
+</head>
 <div class="game-map-decisions">
   <div
     class="text-4xl py-4 justify-content-center text-center surface-300 w-full"
@@ -8,7 +14,7 @@
     <div class="chart-container">
       <ngx-graph
         id="child"
-        [view]="[viewSizeCustom.w - 10, viewSizeCustom.h - 200]"
+        [view]="[viewSizeCustom.w, viewSizeCustom.h - 200]"
         [links]="links"
         [nodes]="nodes"
         [curve]="curve"
@@ -29,18 +35,6 @@
           >
             <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
           </svg:marker>
-        </ng-template>
-
-        <ng-template #clusterTemplate let-cluster>
-          <svg:g class="node cluster">
-            <svg:rect
-              rx="50"
-              ry="50"
-              [attr.width]="customNodeConfig.size"
-              [attr.height]="customNodeConfig.size"
-              [attr.fill]="cluster.data.color"
-            />
-          </svg:g>
         </ng-template>
 
         <ng-template #nodeTemplate let-node>
